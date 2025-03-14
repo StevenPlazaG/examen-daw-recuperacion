@@ -14,14 +14,16 @@ def index():
     elif NODO == '3':
         imagen = './static/3.png'
     return f'''
-        <head><title>Nodo {NODO}</title></head>
+        <head>
+          <title>Nodo {NODO}</title>  
+        </head>
         <body>
             <h1>Bienvenido al Nodo {NODO}</h1>
-            <img src={imagen}>
+            <img src='{imagen}'>
         </body>
         '''
 
-@app.route('about')
+@app.route('/about')
 def about():
         return f'''
         <head><title>Nodo {NODO}</title></head>
@@ -31,4 +33,4 @@ def about():
         '''
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
