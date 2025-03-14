@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  flask_1:
+    build: .
+    container_name: flask_1
+    environment:
+      - NODO=1
+    ports:
+      - '5001:5000'
+
+  flask_2:
+    build: .
+    container_name: flask_2
+    environment:
+      - NODO=2
+    ports:
+      - '5002:5000'
+
+  flask_3:
+    build: .
+    container_name: flask_3
+    environment:
+      - NODO=3
+    ports:
+      - '5003:5000'
+  
+  nginx:
+    image: nginx
+    container_name: nginx
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./app/static:/app/static
+    depends_on:
+      - flask_1
+      - flask_2
+      - flask_3
